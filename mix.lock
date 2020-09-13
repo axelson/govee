@@ -1,0 +1,6 @@
+%{
+  "blue_heron": {:git, "https://github.com/smartrent/blue_heron.git", "bcd8aaa517d97b490607bfc3f3743d42b0abbe0b", [branch: "main", sparse: "blue_heron"]},
+  "blue_heron_transport_usb": {:git, "https://github.com/smartrent/blue_heron.git", "bcd8aaa517d97b490607bfc3f3743d42b0abbe0b", [branch: "main", sparse: "blue_heron_transport_usb"]},
+  "elixir_make": {:hex, :elixir_make, "0.6.1", "8faa29a5597faba999aeeb72bbb9c91694ef8068f0131192fb199f98d32994ef", [:mix], [], "hexpm", "35d33270680f8d839a4003c3e9f43afb595310a592405a00afc12de4c7f55a18"},
+  "ex_bin": {:hex, :ex_bin, "0.4.0", "c86513598a6fd35f018966607f3e8996e6b16324094e8939d163e671ab7c184e", [:mix], [], "hexpm", "223ae53e25ac2874f1b8f469d11a75926bb068a35e8008603c2ede4277cece6c"},
+}
