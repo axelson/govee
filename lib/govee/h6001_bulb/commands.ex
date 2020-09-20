@@ -4,13 +4,14 @@ defmodule Govee.H6001Bulb.Commands do
   @commands %{
     power: 0x01,
     brightness: 0x04,
-    color: 0x05
+    color: 0x05,
+    timer: 0x0B
   }
 
   @led_modes %{
     manual: 0x02,
     microphone: 0x06,
-    scenes: 0x05
+    scenes: 0x04
   }
 
   @doc """
@@ -70,8 +71,8 @@ defmodule Govee.H6001Bulb.Commands do
     |> send_command(conn)
   end
 
-  def build_command_binary(command, payload) do
-    value = pad(<<@command_indicator, command, payload::binary>>)
+  def build_command_binary(command, payload, indicator \\ @command_indicator) do
+    value = pad(<<indicator, command, payload::binary>>)
     checksum = calculate_xor(value, 0)
     <<value::binary-19, checksum::8>>
   end

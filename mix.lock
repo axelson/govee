@@ -1,6 +1,8 @@
 %{
-  "blue_heron": {:git, "https://github.com/smartrent/blue_heron.git", "191337854fb2e55c64350218d345bdc284d0b08a", [branch: "main", sparse: "blue_heron"]},
-  "blue_heron_transport_usb": {:git, "https://github.com/smartrent/blue_heron.git", "191337854fb2e55c64350218d345bdc284d0b08a", [branch: "main", sparse: "blue_heron_transport_usb"]},
+  "blue_heron": {:git, "https://github.com/smartrent/blue_heron.git", "6a822683de8128f551f52f7b9a85811cd19d19fc", [branch: "main", sparse: "blue_heron"]},
+  "blue_heron_transport_usb": {:git, "https://github.com/smartrent/blue_heron.git", "6a822683de8128f551f52f7b9a85811cd19d19fc", [branch: "main", sparse: "blue_heron_transport_usb"]},
   "elixir_make": {:hex, :elixir_make, "0.6.1", "8faa29a5597faba999aeeb72bbb9c91694ef8068f0131192fb199f98d32994ef", [:mix], [], "hexpm", "35d33270680f8d839a4003c3e9f43afb595310a592405a00afc12de4c7f55a18"},
   "ex_bin": {:hex, :ex_bin, "0.4.0", "c86513598a6fd35f018966607f3e8996e6b16324094e8939d163e671ab7c184e", [:mix], [], "hexpm", "223ae53e25ac2874f1b8f469d11a75926bb068a35e8008603c2ede4277cece6c"},
+  "nimble_options": {:hex, :nimble_options, "0.3.0", "1872911bf50a048f04da26e02704e6aeafc362c2daa7636b6dbfda9492ccfcfa", [:mix], [], "hexpm", "180790a8644fea402452bc15bb54b9bf2c8e5c1fdeb6b39d8072e59c324edf7f"},
+  "typed_struct": {:hex, :typed_struct, "0.2.1", "e1993414c371f09ff25231393b6430bd89d780e2a499ae3b2d2b00852f593d97", [:mix], [], "hexpm", "8f5218c35ec38262f627b2c522542f1eae41f625f92649c0af701a6fab2e11b3"},
 }

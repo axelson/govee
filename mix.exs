@@ -26,7 +26,10 @@ defmodule Govee.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:typed_struct, "~> 0.2.1"},
+      {:nimble_options, "~> 0.3.0"},
       dep(:blue_heron, :github),
+      # TODO: Don't rely on the specific transport here
       dep(:blue_heron_transport_usb, :github)
     ]
   end
@@ -34,7 +37,9 @@ defmodule Govee.MixProject do
   defp dep(:blue_heron, :hex), do: {:blue_heron, ">= 0.0.0"}
 
   defp dep(:blue_heron, :github),
-    do: {:blue_heron, github: "smartrent/blue_heron", branch: "main", sparse: "blue_heron", override: true}
+    do:
+      {:blue_heron,
+       github: "smartrent/blue_heron", branch: "main", sparse: "blue_heron", override: true}
 
   defp dep(:blue_heron, :path),
     do: {:blue_heron, path: "~/dev/forks/blue_heron/blue_heron", override: true}
@@ -44,9 +49,7 @@ defmodule Govee.MixProject do
   defp dep(:blue_heron_transport_usb, :github),
     do:
       {:blue_heron_transport_usb,
-       github: "smartrent/blue_heron",
-       branch: "main",
-       sparse: "blue_heron_transport_usb"}
+       github: "smartrent/blue_heron", branch: "main", sparse: "blue_heron_transport_usb"}
 
   defp dep(:blue_heron_transport_usb, :path),
     do: {:blue_heron_transport_usb, path: "~/dev/forks/blue_heron/blue_heron_transport_usb"}
