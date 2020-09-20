@@ -3,24 +3,6 @@ defmodule Govee do
   Documentation for `Govee`.
   """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Govee.hello()
-      :world
-
-  """
-  def hello do
-    :world
-  end
-
-  def setup do
-    %{conn: conn} = :sys.get_state(Govee.H6001Bulb)
-    conn
-  end
-
   def run do
     alias BlueHeron.HCI.Command.ControllerAndBaseband.WriteLocalName
 
