@@ -12,8 +12,6 @@ defmodule Govee.BLEConnection do
   alias BlueHeron.HCI.Event.LEMeta.AdvertisingReport
   alias BlueHeron.HCI.Event.LEMeta.ConnectionComplete
 
-  # alias BlueHeron.HCI.Command.ControllerAndBaseband.WriteLocalName
-
   alias Govee.BLEConnection.Device
 
   defmodule State do

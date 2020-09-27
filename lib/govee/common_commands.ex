@@ -44,8 +44,9 @@ defmodule Govee.CommonCommands do
   The Govee H6001 bulb has a different set of LED's for pure white, the rgb
   value is partially ignored
   """
-  def set_white(rgb) do
+  def set_white(value) when -1 <= value and value <= 1 do
     use_white_leds = 0x1
+    rgb = Govee.ShadesOfWhite.get_color(value)
 
     build_command_binary(
       @commands[:color],
