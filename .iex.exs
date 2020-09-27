@@ -1,0 +1,1 @@
+alias Govee.CommonCommands
