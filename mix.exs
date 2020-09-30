@@ -28,9 +28,7 @@ defmodule Govee.MixProject do
     [
       {:typed_struct, "~> 0.2.1"},
       {:nimble_options, "~> 0.3.0"},
-      dep(:blue_heron, :github),
-      # TODO: Don't rely on the specific transport here
-      dep(:blue_heron_transport_usb, :github)
+      dep(:blue_heron, :github)
     ]
   end
 
