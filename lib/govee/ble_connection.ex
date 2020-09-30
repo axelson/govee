@@ -102,7 +102,7 @@ defmodule Govee.BLEConnection do
           }"
         )
 
-        :ok = BlueHeron.ATT.Client.create_connection(device.att_client, peer_address: device.addr)
+        :ok = BlueHeron.ATT.Client.create_connection(device.att_client, peer_address: device.addr.integer)
       end
     end)
 

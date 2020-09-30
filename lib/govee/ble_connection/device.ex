@@ -17,15 +17,17 @@ defmodule Govee.BLEConnection.Device do
     ],
     addr: [
       required: true,
-      type: :non_neg_integer,
+      type: :non_neg_integer
     ]
   ]
   def new(opts) do
     case NimbleOptions.validate(opts, @options_schema) do
       {:ok, opts} ->
+        addr = Keyword.fetch!(opts, :addr)
+
         %__MODULE__{
           type: Keyword.fetch!(opts, :type),
-          addr: Keyword.fetch!(opts, :addr)
+          addr: BlueHeron.Address.parse(addr)
         }
 
       {:error, error} ->
@@ -34,23 +36,33 @@ defmodule Govee.BLEConnection.Device do
     end
   end
 
-  def matches_advertising_packet?(%__MODULE__{type: :h6001, addr: addr}, %AdvertisingReport{} = advertising_report) do
+  def matches_advertising_packet?(
+        %__MODULE__{type: :h6001, addr: addr},
+        %AdvertisingReport{} = advertising_report
+      ) do
+    address = addr.integer
     case advertising_report do
       %AdvertisingReport{
-        devices: [%AdvertisingReport.Device{address: ^addr, data: ["\tMinger" <> _]}]
+        devices: [%AdvertisingReport.Device{address: ^address, data: ["\tMinger" <> _]}]
       } ->
         true
+
       _ ->
         false
     end
   end
 
-  def matches_advertising_packet?(%__MODULE__{type: :h6159, addr: addr}, %AdvertisingReport{} = advertising_report) do
+  def matches_advertising_packet?(
+        %__MODULE__{type: :h6159, addr: addr},
+        %AdvertisingReport{} = advertising_report
+      ) do
+    address = addr.integer
     case advertising_report do
       %AdvertisingReport{
-        devices: [%AdvertisingReport.Device{address: ^addr, data: ["\tihoment_H6159" <> _]}]
+        devices: [%AdvertisingReport.Device{address: ^address, data: ["\tihoment_H6159" <> _]}]
       } ->
         true
+
       _ ->
         false
     end
@@ -68,6 +80,6 @@ defmodule Govee.BLEConnection.Device do
   def pretty_name(%__MODULE__{type: :h6159}), do: "H6159 Govee LED Strip"
 
   def debug_log_name(%__MODULE__{} = device) do
-    [pretty_name(device), " ", inspect(device.addr, base: :hex)]
+    [pretty_name(device), " ", device.addr]
   end
 end
