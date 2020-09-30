@@ -117,7 +117,7 @@ defmodule Govee.BLEConnection do
 
   # Sent when create_connection/2 is complete
   def handle_info(
-        {BlueHeron.ATT.Client, att_client, %ConnectionComplete{status_name: "Success"}},
+        {BlueHeron.ATT.Client, att_client, %ConnectionComplete{status: 0}},
         state
       ) do
     state =

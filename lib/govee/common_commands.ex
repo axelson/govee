@@ -3,7 +3,7 @@ defmodule Govee.CommonCommands do
   Common commands amongst supported govee devices
   """
 
-  @keep_alive_indicator 0xAA
+  # @keep_alive_indicator 0xAA
   @command_indicator 0x33
 
   @commands %{
