@@ -80,6 +80,6 @@ defmodule Govee.BLEConnection.Device do
   def pretty_name(%__MODULE__{type: :h6159}), do: "H6159 Govee LED Strip"
 
   def debug_log_name(%__MODULE__{} = device) do
-    [pretty_name(device), " ", device.addr]
+    [pretty_name(device), " ", to_string(device.addr)]
   end
 end
