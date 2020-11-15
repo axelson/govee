@@ -64,7 +64,7 @@ defmodule Govee.BLEConnection do
   @impl GenServer
   def init(config) do
     # Temporary hack until I figure out how to set the name from the child_spec thing
-    true = Process.register(self(), Server)
+    true = Process.register(self(), BLEServer)
 
     # Create a context for BlueHeron to operate with
     {:ok, ctx} = BlueHeron.transport(config.transport_config)
