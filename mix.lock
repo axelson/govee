@@ -1,5 +1,5 @@
 %{
-  "blue_heron": {:git, "https://github.com/smartrent/blue_heron.git", "739b07c1f027c9fa00995b943b39ef95b90f87c4", [branch: "main", sparse: "blue_heron"]},
+  "blue_heron": {:git, "https://github.com/blue-heron/blue_heron.git", "6b331ad8d1cd92c0eaaa0a1ca51e152a5302f23a", [branch: "main"]},
   "nimble_options": {:hex, :nimble_options, "0.3.5", "a4f6820cdcb4ee444afd78635f323e58e8a5ddf2fbbe9b9d283a99f972034bae", [:mix], [], "hexpm", "f5507cc90033a8d12769522009c80aa9164af6bab245dbd4ad421d008455f1e1"},
   "typed_struct": {:hex, :typed_struct, "0.2.1", "e1993414c371f09ff25231393b6430bd89d780e2a499ae3b2d2b00852f593d97", [:mix], [], "hexpm", "8f5218c35ec38262f627b2c522542f1eae41f625f92649c0af701a6fab2e11b3"},
 }
