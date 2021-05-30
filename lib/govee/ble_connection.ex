@@ -69,7 +69,12 @@ defmodule Govee.BLEConnection do
   def init(config) do
     Logger.info("BLEConnection starting with config: #{inspect config}")
     # Temporary hack until I figure out how to set the name from the child_spec thing
-    true = Process.register(self(), BLEServer)
+    try do
+      true = Process.register(self(), BLEServer)
+    rescue
+      e in ArgumentError ->
+        Logger.error("Unable to register name: #{inspect e}")
+    end
 
     # Create a context for BlueHeron to operate with
     Logger.info("BLEConnection transport config: #{inspect config.transport_config}")
