@@ -49,6 +49,10 @@ defmodule Govee.BLEConnection do
           transport_config: Keyword.fetch!(opts, :transport_config)
         }
 
+        Logger.warn("Govee BLEConnection start_link with opts: #{inspect opts}")
+        Logger.warn("Govee BLEConnection start_link with genserver_opts: #{inspect genserver_opts}")
+        Logger.warn("Govee BLEConnection start_link with config: #{inspect config}")
+
         GenServer.start_link(__MODULE__, config, genserver_opts)
 
       {:error, error} ->
@@ -63,11 +67,14 @@ defmodule Govee.BLEConnection do
 
   @impl GenServer
   def init(config) do
+    Logger.info("BLEConnection starting with config: #{inspect config}")
     # Temporary hack until I figure out how to set the name from the child_spec thing
     true = Process.register(self(), BLEServer)
 
     # Create a context for BlueHeron to operate with
+    Logger.info("BLEConnection transport config: #{inspect config.transport_config}")
     {:ok, ctx} = BlueHeron.transport(config.transport_config)
+    Logger.info("built context: #{inspect ctx}")
 
     # Subscribe to HCI and ACL events
     BlueHeron.add_event_handler(ctx)
@@ -79,8 +86,11 @@ defmodule Govee.BLEConnection do
         %Device{device | att_client: pid}
       end)
 
+    Logger.info("devices: #{inspect devices}")
+
     state = struct(State, Map.merge(config, %{devices: devices, ctx: ctx}))
 
+    Logger.info("state: #{inspect state}")
     {:ok, state}
   end
 
