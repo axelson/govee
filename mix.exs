@@ -27,7 +27,7 @@ defmodule Govee.MixProject do
   defp deps do
     [
       {:typed_struct, "~> 0.2.1"},
-      {:nimble_options, "~> 0.3.0"},
+      {:nimble_options, "~> 0.4.0"},
       dep(:blue_heron, :github)
     ]
   end
