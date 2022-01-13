@@ -13,7 +13,7 @@ defmodule Govee.BLEConnection.Device do
   @options_schema [
     type: [
       required: true,
-      type: {:one_of, [:h6001, :h6159]}
+      type: {:in, [:h6001, :h6159]}
     ],
     addr: [
       required: true,
