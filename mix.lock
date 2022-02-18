@@ -1,5 +1,5 @@
 %{
-  "blue_heron": {:git, "https://github.com/blue-heron/blue_heron.git", "6b331ad8d1cd92c0eaaa0a1ca51e152a5302f23a", [branch: "main"]},
+  "blue_heron": {:hex, :blue_heron, "0.3.0", "a9e1e8b4b34c2506f9a5e7b073a0e44cba2a6c2070f127eea10ad132c9c90d3c", [:mix], [], "hexpm", "190887a090fc8af7f9f6a6d2183dee6877b4a43a42d45315ce3d6d575ef0ef8e"},
   "nimble_options": {:hex, :nimble_options, "0.4.0", "c89babbab52221a24b8d1ff9e7d838be70f0d871be823165c94dd3418eea728f", [:mix], [], "hexpm", "e6701c1af326a11eea9634a3b1c62b475339ace9456c1a23ec3bc9a847bca02d"},
   "typed_struct": {:hex, :typed_struct, "0.2.1", "e1993414c371f09ff25231393b6430bd89d780e2a499ae3b2d2b00852f593d97", [:mix], [], "hexpm", "8f5218c35ec38262f627b2c522542f1eae41f625f92649c0af701a6fab2e11b3"},
 }

@@ -28,7 +28,7 @@ defmodule Govee.MixProject do
     [
       {:typed_struct, "~> 0.2.1"},
       {:nimble_options, "~> 0.4.0"},
-      dep(:blue_heron, :github)
+      dep(:blue_heron, :hex)
     ]
   end
 
