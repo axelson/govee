@@ -3,6 +3,8 @@ defmodule Govee.CommonCommands do
   Common commands amongst supported govee devices
   """
 
+  alias Govee.Command
+
   # @keep_alive_indicator 0xAA
   @command_indicator 0x33
 
@@ -19,19 +21,7 @@ defmodule Govee.CommonCommands do
     scenes: 0x04
   }
 
-  @doc """
-  Set the color of the bulb.
-
-      iex> GoveeBulb.set_color(conn, 0xFFFFFF) # full white
-      :ok
-      iex> GoveeBulb.set_color(conn, 0xFF0000) # full red
-      :ok
-      iex> GoveeBulb.set_color(conn, 0x00FF00) # full green
-      :ok
-      iex> GoveeBulb.set_color(conn, 0x0000FF) # full blue
-      :ok
-  """
-  def set_color(rgb) do
+  def build_binary(%Command{type: :set_color, value: rgb}) do
     use_white_leds = 0x0
 
     build_command_binary(
@@ -40,11 +30,7 @@ defmodule Govee.CommonCommands do
     )
   end
 
-  @doc """
-  The Govee H6001 bulb has a different set of LED's for pure white, the rgb
-  value is partially ignored
-  """
-  def set_white(value) when -1 <= value and value <= 1 do
+  def build_binary(%Command{type: :set_white, value: value}) do
     use_white_leds = 0x1
     rgb = Govee.ShadesOfWhite.get_color(value)
 
@@ -54,36 +40,22 @@ defmodule Govee.CommonCommands do
     )
   end
 
-  @doc """
-  Set the brightness using a scale from 0 to 255
-  """
-  def set_brightness(brightness) when brightness >= 0 and brightness < 256 do
+  def build_binary(%Command{type: :set_brightness, value: brightness}) do
     build_command_binary(@commands[:brightness], <<brightness>>)
   end
 
-  @doc """
-  Turn on the bulb
-  """
-  def turn_on do
+  def build_binary(%Command{type: :turn_on}) do
     build_command_binary(@commands[:power], <<0x1>>)
   end
 
-  @doc """
-  Turn off the bulb
-  """
-  def turn_off do
+  def build_binary(%Command{type: :turn_off}) do
     build_command_binary(@commands[:power], <<0x0>>)
   end
 
-  def build_command_binary(command, payload, indicator \\ @command_indicator) do
+  defp build_command_binary(command, payload, indicator \\ @command_indicator) do
     value = pad(<<indicator, command, payload::binary>>)
     checksum = calculate_xor(value, 0)
     <<value::binary-19, checksum::8>>
-  end
-
-  def send_command(command, conn) do
-    handle = 0x0015
-    BlueHeron.ATT.Client.write(conn, handle, command)
   end
 
   defp pad(binary) when byte_size(binary) == 19, do: binary
