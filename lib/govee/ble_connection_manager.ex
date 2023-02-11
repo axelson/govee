@@ -184,7 +184,7 @@ defmodule Govee.BLEConnectionManager do
             Enum.find(matched_devices, device, &(&1.addr == device.addr))
           end)
 
-        Logger.info("updated_devices: #{inspect(updated_devices, pretty: true)}")
+        # Logger.info("updated_devices: #{inspect(updated_devices, pretty: true)}")
         %State{state | devices: updated_devices}
       end
 
@@ -337,7 +337,7 @@ defmodule Govee.BLEConnectionManager do
         end
       end)
 
-    Logger.info("with att client devices: #{inspect(devices, pretty: true)}")
+    # Logger.info("with att client devices: #{inspect(devices, pretty: true)}")
     %State{state | devices: devices}
   end
 
