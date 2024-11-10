@@ -1,5 +1,5 @@
 # Scratch pad for new commands
-#defmodule Govee.MiscScratchCommands do
+# defmodule Govee.MiscScratchCommands do
 #  @keep_alive_indicator 0xAA
 #
 #  @commands %{
@@ -141,4 +141,4 @@
 #  defdelegate build_command_binary(command, payload), to: Govee.CommonCommands
 #  defdelegate build_command_binary(command, payload, indicator), to: Govee.CommonCommands
 #  defdelegate send_command(command, conn), to: Govee.CommonCommands
-#end
+# end

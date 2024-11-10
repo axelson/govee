@@ -49,8 +49,8 @@ defmodule Govee.BLEConnectionManager do
       {:ok, opts} ->
         # devices = []
         devices =
-         Keyword.fetch!(opts, :devices)
-         |> Enum.map(&Device.new!/1)
+          Keyword.fetch!(opts, :devices)
+          |> Enum.map(&Device.new!/1)
 
         Logger.info("starting with devices: #{inspect(devices, pretty: true)}")
 
@@ -59,18 +59,18 @@ defmodule Govee.BLEConnectionManager do
           transport_config: Keyword.fetch!(opts, :transport_config)
         }
 
-        Logger.warn("Govee BLEConnectionManager start_link with opts: #{inspect(opts)}")
+        Logger.warning("Govee BLEConnectionManager start_link with opts: #{inspect(opts)}")
 
-        Logger.warn(
+        Logger.warning(
           "Govee BLEConnectionManager start_link with genserver_opts: #{inspect(genserver_opts)}"
         )
 
-        Logger.warn("Govee BLEConnectionManager start_link with config: #{inspect(config)}")
+        Logger.warning("Govee BLEConnectionManager start_link with config: #{inspect(config)}")
 
         GenServer.start_link(__MODULE__, config, genserver_opts)
 
       {:error, error} ->
-        Logger.warn("Options did not validate. Full options were: #{inspect(opts)}")
+        Logger.warning("Options did not validate. Full options were: #{inspect(opts)}")
         raise error
     end
   end
@@ -231,7 +231,7 @@ defmodule Govee.BLEConnectionManager do
         {BlueHeron.ATT.Client, att_client, %DisconnectionComplete{reason_name: reason}},
         state
       ) do
-    Logger.warn("Govee connection dropped: #{reason}")
+    Logger.warning("Govee connection dropped: #{reason}")
 
     state =
       with_device_by_att_client(state, att_client, fn device ->

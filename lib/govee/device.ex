@@ -31,7 +31,7 @@ defmodule Govee.Device do
         }
 
       {:error, error} ->
-        Logger.warn("Options did not validate. Full options were: #{inspect(opts)}")
+        Logger.warning("Options did not validate. Full options were: #{inspect(opts)}")
         raise error
     end
   end
