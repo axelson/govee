@@ -27,7 +27,7 @@ defmodule Govee.MixProject do
   defp deps do
     [
       {:typed_struct, "~> 0.2"},
-      {:nimble_options, "~> 0.4.0"},
+      {:nimble_options, "~> 1.0"},
       dep(:blue_heron, :hex),
       {:exsync, path: "~/dev/forks/exsync", only: :dev}
     ]
