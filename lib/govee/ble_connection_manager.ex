@@ -113,7 +113,7 @@ defmodule Govee.BLEConnectionManager do
 
     # Start the ATT Client for each device
     devices =
-      Enum.map(config.devices, fn device ->
+      Enum.map(config.devices, fn %Device{} = device ->
         Logger.info("Starting ATT Client")
         {:ok, pid} = BlueHeron.ATT.Client.start_link(ctx)
         %Device{device | att_client: pid}
@@ -137,7 +137,7 @@ defmodule Govee.BLEConnectionManager do
     {:noreply, state}
   end
 
-  def handle_info({:HCI_EVENT_PACKET, %AdvertisingReport{} = advertising_report}, state) do
+  def handle_info({:HCI_EVENT_PACKET, %AdvertisingReport{} = advertising_report}, %State{} = state) do
     matched_devices =
       Enum.flat_map(state.devices, fn device ->
         if Device.matches_advertising_packet?(device, advertising_report) do
@@ -291,7 +291,7 @@ defmodule Govee.BLEConnectionManager do
     end
   end
 
-  def handle_call({:remove_device, device_addr}, _from, state) do
+  def handle_call({:remove_device, device_addr}, _from, %State{} = state) do
     case Enum.find(state.devices, &(&1.addr == device_addr)) do
       nil ->
         {:reply, {:error, :device_not_known}, state}
@@ -327,7 +327,7 @@ defmodule Govee.BLEConnectionManager do
     {:reply, result, state}
   end
 
-  defp with_device_by_att_client(state, att_client, fun) when is_function(fun, 1) do
+  defp with_device_by_att_client(%State{} = state, att_client, fun) when is_function(fun, 1) do
     devices =
       Enum.map(state.devices, fn device ->
         if device.att_client == att_client do
